@@ -1,0 +1,5 @@
+C:\Users\CzyK\Desktop\Projekt\WpfApp2\TestOne\obj\Release\net7.0\TestOne.csproj.AssemblyReference.cache
+C:\Users\CzyK\Desktop\Projekt\WpfApp2\TestOne\obj\Release\net7.0\TestOne.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CzyK\Desktop\Projekt\WpfApp2\TestOne\obj\Release\net7.0\TestOne.AssemblyInfoInputs.cache
+C:\Users\CzyK\Desktop\Projekt\WpfApp2\TestOne\obj\Release\net7.0\TestOne.AssemblyInfo.cs
+C:\Users\CzyK\Desktop\Projekt\WpfApp2\TestOne\obj\Release\net7.0\TestOne.csproj.CoreCompileInputs.cache

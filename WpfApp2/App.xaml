@@ -1,0 +1,29 @@
+﻿<!-- App.xaml -->
+
+<Application x:Class="WpfApp2.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfApp2"
+             StartupUri="Views/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- MergedDictionaries zawiera zestawienie różnych słowników zasobów -->
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Własny styl dla CheckBox w menu -->
+                <ResourceDictionary Source="Views/Styles/MenuCheckBoxStyle.xaml"/>
+
+                <!-- Materiałowy motyw dla interfejsu użytkownika -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+
+                <!-- Domyślne ustawienia materiałowego motywu -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+
+                <!-- Rekomendowany kolor podstawowy materiałowego motywu (Teal) -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml" />
+
+                <!-- Rekomendowany kolor akcentu materiałowego motywu (Lime) -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

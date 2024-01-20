@@ -1,0 +1,102 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {
+      "WpfApp2/1.0.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0",
+        "compile": {
+          "bin/placeholder/WpfApp2.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WpfApp2.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "WpfApp2/1.0.0": {
+      "type": "project",
+      "path": "../WpfApp2/WpfApp2.csproj",
+      "msbuildProject": "../WpfApp2/WpfApp2.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net7.0": [
+      "WpfApp2 >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\CzyK\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\CzyK\\Desktop\\Projekt\\WpfApp2\\TestOne\\TestOne.csproj",
+      "projectName": "TestOne",
+      "projectPath": "C:\\Users\\CzyK\\Desktop\\Projekt\\WpfApp2\\TestOne\\TestOne.csproj",
+      "packagesPath": "C:\\Users\\CzyK\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\CzyK\\Desktop\\Projekt\\WpfApp2\\TestOne\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\CzyK\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "projectReferences": {
+            "C:\\Users\\CzyK\\Desktop\\Projekt\\WpfApp2\\WpfApp2\\WpfApp2.csproj": {
+              "projectPath": "C:\\Users\\CzyK\\Desktop\\Projekt\\WpfApp2\\WpfApp2\\WpfApp2.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "net7.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+      }
+    }
+  },
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Projekt WpfApp2 nie jest zgodny z elementem net7.0 (.NETCoreApp,Version=v7.0). Projekt WpfApp2 obsługuje: net7.0-windows7.0 (.NETCoreApp,Version=v7.0)",
+      "libraryId": "WpfApp2",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
+}

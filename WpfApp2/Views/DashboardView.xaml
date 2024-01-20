@@ -1,0 +1,250 @@
+﻿<!-- Dashboard.xaml -->
+
+<UserControl x:Class="WpfApp2.Dashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Height="700" Width="900"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{x:Null}">
+
+    <!-- Zasoby dla konwertera używanego do konwersji list do stringa -->
+    <UserControl.Resources>
+        <local:ListToStringConverter x:Key="ListToStringConverter" />
+    </UserControl.Resources>
+
+    <!-- Główny kontener karty MaterialDesign -->
+    <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" UniformCornerRadius="15" Margin="25" materialDesign:ElevationAssist.Elevation="Dp4">
+
+        <!-- Główny Grid z trzema kolumnami i dwiema wierszami -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="135"/>
+                <ColumnDefinition Width="381*"/>
+                <ColumnDefinition Width="334*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!-- DialogHost dla wyświetlania szczegółów książki -->
+            <materialDesign:DialogHost x:Name="RecordDialogHost" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <materialDesign:DialogHost.DialogContent>
+                    <!-- Okno dialogowe z informacjami o książce -->
+                    <Border Background="{DynamicResource MaterialDesignPaper}" BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1" CornerRadius="8">
+                        <Grid Width="400">
+                            <StackPanel Margin="16">
+
+                                <!-- Okładka książki -->
+                                <Image Source="{Binding SelectedBook.coverLink}" Width="100" Height="150" Margin="0,0,0,8"/>
+
+                                <!-- Tytuł książki -->
+                                <TextBlock FontWeight="SemiBold" FontSize="18" Text="{Binding SelectedBook.title}" Margin="0,0,0,8"/>
+
+                                <!-- Autorzy -->
+                                <StackPanel Margin="0,0,0,8">
+                                    <TextBlock FontWeight="Bold" Text="Autorzy:"/>
+                                    <TextBlock Text="{Binding SelectedBook.authors, Converter={StaticResource ListToStringConverter}}"/>
+                                </StackPanel>
+
+                                <!-- Data wydania -->
+                                <StackPanel Margin="0,0,0,8">
+                                    <TextBlock FontWeight="Bold" Text="Data wydania:"/>
+                                    <TextBlock Text="{Binding SelectedBook.publishedDate}"/>
+                                </StackPanel>
+
+                                <!-- Wydawca -->
+                                <StackPanel Margin="0,0,0,8">
+                                    <TextBlock FontWeight="Bold" Text="Wydawca:"/>
+                                    <TextBlock Text="{Binding SelectedBook.publisher}"/>
+                                </StackPanel>
+
+                                <!-- ISBN -->
+                                <StackPanel Margin="0,0,0,8">
+                                    <TextBlock FontWeight="Bold" Text="ISBN:"/>
+                                    <TextBlock Text="{Binding SelectedBook.industryIdentifiers, Converter={StaticResource ListToStringConverter}}"/>
+                                </StackPanel>
+
+                                <!-- Liczba stron -->
+                                <StackPanel Margin="0,0,0,8">
+                                    <TextBlock FontWeight="Bold" Text="Liczba stron:"/>
+                                    <TextBlock Text="{Binding SelectedBook.pageCount}"/>
+                                </StackPanel>
+
+                                <!-- Średnia ocen -->
+                                <StackPanel Margin="0,0,0,8">
+                                    <TextBlock FontWeight="Bold" Text="Średnia ocen:"/>
+                                    <TextBlock Text="{Binding SelectedBook.averageRatingValue, StringFormat={}{0:N1}}"/>
+                                </StackPanel>
+
+                                <!-- Opis -->
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="200">
+                                    <StackPanel Margin="0,0,0,8">
+                                        <TextBlock FontWeight="Bold" Text="Opis:"/>
+                                        <TextBlock Text="{Binding SelectedBook.description}" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </ScrollViewer>
+
+                                <!-- Przycisk do zamknięcia okna dialogowego -->
+                                <Button Content="Zamknij" Click="ClosePopup"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </materialDesign:DialogHost.DialogContent>
+            </materialDesign:DialogHost>
+
+            <!-- DialogHost dla ogólnego menu aplikacji -->
+            <materialDesign:DialogHost CloseOnClickAway="True" x:Name="DialogHost">
+                <materialDesign:PopupBox materialDesign:PopupUniformCornerRadius="10" HorizontalAlignment="Right" Margin="0,30,-694,15" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25">
+                    <StackPanel>
+
+                        <!-- Przycisk do przełączania między trybem jasnym a ciemnym -->
+                        <StackPanel Margin="16 10 0 6" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center" Text="Tryb Ciemny" />
+                            <ToggleButton Cursor="Hand" ToolTip="Enable Dark Mode" Margin="12 0 8 0" x:Name="themeToggle" IsChecked="{Binding IsDarkTheme}" Click="toggleTheme"/>
+                        </StackPanel>
+
+                        <!-- Przycisk do zamknięcia aplikacji -->
+                        <Button x:Name="Btn_Exit" ToolTip="Close Application" Content="Zamknij aplikację" Click="exitApp"/>
+
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </materialDesign:DialogHost>
+
+            <!-- Nagłówek sekcji biblioteki -->
+            <TextBlock Text="Biblioteka"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Foreground="Teal"
+                       FontSize="26"
+                       Margin="14,27,0,0" 
+                       FontWeight="SemiBold" Height="32" Width="121"/>
+
+            <!-- Panel kontrolny dla CheckBox-ów filtrów -->
+            <StackPanel Grid.Row="1">
+                <CheckBox x:Name="TitleCheckBox" 
+                                      Margin="10,55,0,0"   
+                                      Content="Tytuł"
+                                      Height="30"
+                                      FontSize="14"
+                                      Style="{StaticResource MenuCheckBoxStyle}" Width="120"/>
+                <CheckBox x:Name="AuthorscheckBox" 
+                                      Content="Autorzy"
+                                      Height="33"
+                                      Margin="10,0,0,0"
+                                      FontSize="14"
+                                      Style="{StaticResource MenuCheckBoxStyle}" Width="120"/>
+                <CheckBox x:Name="PublishedDatecheckBox" 
+                                      Content="Data wydania"
+                                      Height="30"
+                                      Margin="10,0,0,0"
+                                      FontSize="14"
+                                      Style="{StaticResource MenuCheckBoxStyle}" Width="120"/>
+                <CheckBox x:Name="PublishercheckBox"  
+                                      Content="Wydawca"
+                                      Margin="10,0,0,0"
+                                      Height="30"
+                                      FontSize="14"
+                                      Style="{StaticResource MenuCheckBoxStyle}" Width="120"/>
+                <CheckBox x:Name="ISBNCheckBox"
+                                      Margin="10,0,0,0"
+                                      Content="ISBN"
+                                      Height="30"
+                                      FontSize="14"
+                                      Style="{StaticResource MenuCheckBoxStyle}" Width="120"/>
+                <CheckBox x:Name="PageCountbcheckBox" 
+                                      Content="Liczba stron"
+                                      Height="30"
+                                      Margin="10,0,0,0"
+                                      FontSize="14"
+                                      Style="{StaticResource MenuCheckBoxStyle}" Width="120"/>
+
+                <CheckBox x:Name="averageRatingcheckBox" 
+                                    Content="Średnia ocen"
+                                      Margin="10,0,0,0"
+                                      Height="30"
+                                      FontSize="14"
+                                      Style="{StaticResource MenuCheckBoxStyle}" Width="120"/>
+
+                <CheckBox x:Name="DescriptionbcheckBox" 
+                                Content="Opis"
+                                      Height="33"
+                                      Margin="10,0,0,0"
+                                      FontSize="14"
+                                      Style="{StaticResource MenuCheckBoxStyle}" Width="120"
+                                      Visibility="Collapsed"/>
+            </StackPanel>
+
+            <!-- Pole do wprowadzania tekstu dla wyszukiwania -->
+            <TextBox x:Name="input" Width="346"
+                                 Height="40"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Top"
+                                 Grid.Column="1" Margin="0,24,0,0"/>
+
+            <!-- ComboBox dla wyboru kategorii wyszukiwania -->
+            <ComboBox x:Name="SzukajComboBox"
+                                  Height="40"
+                                  Grid.Column="2"
+                                  VerticalContentAlignment="Center"
+                                  Margin="23,24,196,0" VerticalAlignment="Top"/>
+
+            <!-- Przycisk do rozpoczęcia wyszukiwania -->
+            <Button Width="100"
+                                Height="40"
+                                Margin="167,22,0,0"
+                                Grid.Column="2"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top" 
+                                Click="Button_Click">
+
+                <TextBlock Margin="5,0">Szukaj</TextBlock>
+            </Button>
+
+            <!-- Lista wyświetlająca wyniki wyszukiwania -->
+            <ListView x:Name="List"  ItemsSource="{Binding Items}" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" Margin="5,0,22,10" HorizontalAlignment="Stretch" SelectionChanged="List_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <!-- Okładka książki w liście -->
+                                    <Image Source="{Binding coverLink}" Width="80" Height="120" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding title}" Header="Tytuł"/>
+                        <GridViewColumn Header="Autorzy">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <!-- Autorzy książki w liście -->
+                                    <TextBlock Text="{Binding authors, Converter={StaticResource ListToStringConverter}}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding publishedDate}" Header="Data wydania"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding publisher}" Header="Wydawca"/>
+                        <GridViewColumn Header="ISBN">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <!-- Numer ISBN książki w liście -->
+                                    <TextBlock Text="{Binding industryIdentifiers, Converter={StaticResource ListToStringConverter}}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding pageCount}" Header="Liczba stron"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding averageRatingValue, StringFormat={}{0:N1}}" Header="Średnia ocen"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+    </materialDesign:Card>
+</UserControl>

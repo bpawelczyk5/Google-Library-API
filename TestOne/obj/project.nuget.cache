@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "5ZHilUYMKYGAryaXU6m6QnHLRkCByPEMUHCWsrlcdajOPAB/v//vvPlPwwWnHK1K72rYXbNWJfH2ryk+z3PzmA==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\CzyK\\Desktop\\Projekt\\WpfApp2\\TestOne\\TestOne.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Projekt WpfApp2 nie jest zgodny z elementem net7.0 (.NETCoreApp,Version=v7.0). Projekt WpfApp2 obsługuje: net7.0-windows7.0 (.NETCoreApp,Version=v7.0)",
+      "libraryId": "WpfApp2",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
+}

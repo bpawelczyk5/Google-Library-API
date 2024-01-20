@@ -1,0 +1,40 @@
+﻿<!-- 
+    Projekt pliku csproj dla aplikacji WPF w języku C#.
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<!-- Typ wynikowy aplikacji - WinExe dla aplikacji okienkowej -->
+		<OutputType>WinExe</OutputType>
+
+		<!-- Wersja platformy docelowej -->
+		<TargetFramework>net7.0-windows</TargetFramework>
+
+		<!-- Włączenie obsługi typów nullowalnych -->
+		<Nullable>enable</Nullable>
+
+		<!-- Włączenie używania implicit usings -->
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Ustawienie, że projekt używa Windows Presentation Foundation (WPF) -->
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Pakiety NuGet używane w projekcie -->
+
+		<!-- Biblioteka BCrypt.Net-Next w wersji 4.0.3 -->
+		<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+
+		<!-- Biblioteka MaterialDesignThemes w wersji 4.9.0 -->
+		<PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+
+		<!-- Biblioteka Newtonsoft.Json w wersji 13.0.3 -->
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+
+		<!-- Biblioteka System.Data.SqlClient w wersji 4.8.6 -->
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+	</ItemGroup>
+
+</Project>
